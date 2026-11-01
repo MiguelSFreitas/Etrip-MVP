@@ -1,9 +1,5 @@
 <?php
-/**
- * Query.php
- *
- * Abre (e devolve) a conexão PDO com o banco MySQL do ETRIP.
- */
+
 function conectarBanco() {
     $host = 'localhost';
     $dbname = 'etrip';
