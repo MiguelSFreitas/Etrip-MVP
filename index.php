@@ -1,6 +1,6 @@
 <?php
 /**
- * index.php
+ * index.php (fica em public/)
  *
  * O PHP gera:
  * - as opções de MARCA (via listarMarcas)
@@ -9,13 +9,14 @@
  *   marca -> modelo -> versao (selects.js lê esse JSON, nunca busca
  *   nada separado — o dado já vem pronto do PHP).
  */
+require_once __DIR__ . '/auth.php';
+exigirLogin(); // sem conta, não entra — redireciona pro login.php
+
 require_once __DIR__ . '/backend/data/CarroModel.php';   // gera $carros, listarMarcas(), listarModelosPorMarca()
 require_once __DIR__ . '/backend/data/CidadeModel.php';  // gera $cidades
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-
 
 <head>
     <meta charset="UTF-8">
@@ -41,8 +42,11 @@ require_once __DIR__ . '/backend/data/CidadeModel.php';  // gera $cidades
             <li><a href="index.php" class="ativo">Início</a></li>
             <li><a href="#viagem">Calcular viagem</a></li>
             <li><a href="historico.php">Histórico</a></li>
-          
         </ul>
+        <div class="usuario-info">
+            <span>Olá, <?php echo htmlspecialchars(nomeUsuarioLogado()); ?></span>
+            <a href="logout.php">Sair</a>
+        </div>
         <button type="button" id="toggle-tema" class="botao-tema" aria-label="Alternar modo escuro" title="Alternar modo escuro">🌙</button>
     </nav>
 
