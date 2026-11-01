@@ -2,40 +2,32 @@
 /**
  * historico.php
  *
- * Mostra as simulações salvas em historico.json como cards (imagem do
- * carro à esquerda, informações no meio, botões de ação à direita).
- * Não tem login: qualquer um que acessar a página vê, pode reabrir o
- * resultado de uma simulação antiga ou apagar itens do histórico.
+ * Mostra as simulações salvas na tabela historico_simulacoes como
+ * cards — só as do usuário que está logado (cada conta só vê e
+ * mexe no próprio histórico).
  */
 
-$arquivoHistorico = __DIR__ . '/historico.json';
+require_once __DIR__ . '/auth.php';
+exigirLogin();
 
-function lerHistorico($arquivo) {
-    if (!file_exists($arquivo)) {
-        return [];
-    }
-    $dados = json_decode(file_get_contents($arquivo), true);
-    return is_array($dados) ? $dados : [];
-}
+require_once __DIR__ . '/backend/data/Query.php';
 
-function salvarHistoricoCompleto($arquivo, $historico) {
-    file_put_contents($arquivo, json_encode($historico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-}
+$pdo = conectarBanco();
+$usuarioId = idUsuarioLogado();
 
-// Processa exclusão, se o botão de lixeira de algum item foi clicado
+// Processa exclusão, se o botão de lixeira de algum item foi clicado.
+// O "AND usuario_id = ?" garante que ninguém apaga histórico de outra conta.
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir_id'])) {
-    $historico = lerHistorico($arquivoHistorico);
-    $historico = array_values(array_filter($historico, function ($item) {
-        return $item['id'] !== $_POST['excluir_id'];
-    }));
-    salvarHistoricoCompleto($arquivoHistorico, $historico);
+    $stmt = $pdo->prepare('DELETE FROM historico_simulacoes WHERE id = ? AND usuario_id = ?');
+    $stmt->execute([$_POST['excluir_id'], $usuarioId]);
 
-    // Redireciona pra evitar reenvio do POST se a pessoa atualizar a página (F5)
     header('Location: historico.php');
     exit;
 }
 
-$historico = lerHistorico($arquivoHistorico);
+$stmt = $pdo->prepare('SELECT * FROM historico_simulacoes WHERE usuario_id = ? ORDER BY data_hora DESC LIMIT 20');
+$stmt->execute([$usuarioId]);
+$historico = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -63,6 +55,10 @@ $historico = lerHistorico($arquivoHistorico);
             <li><a href="index.php#viagem">Calcular viagem</a></li>
             <li><a href="historico.php" class="ativo">Histórico</a></li>
         </ul>
+        <div class="usuario-info">
+            <span>Olá, <?php echo htmlspecialchars(nomeUsuarioLogado()); ?></span>
+            <a href="logout.php">Sair</a>
+        </div>
         <button type="button" id="toggle-tema" class="botao-tema" aria-label="Alternar modo escuro" title="Alternar modo escuro">🌙</button>
     </nav>
 
@@ -73,7 +69,7 @@ $historico = lerHistorico($arquivoHistorico);
                 <span class="passo">🕒</span>
                 <div>
                     <h2>Histórico de simulações</h2>
-                    <p>Últimas viagens calculadas no ETRIP.</p>
+                    <p>Suas últimas viagens calculadas no ETRIP.</p>
                 </div>
             </header>
         </section>
@@ -91,8 +87,7 @@ $historico = lerHistorico($arquivoHistorico);
 
             <div class="grade-historico">
                 <?php foreach ($historico as $item): ?>
-                    <?php $podeAbrir = isset($item['carro_id'], $item['percentual_saida'], $item['percentual_chegada']); ?>
-                    <div class="historico-card<?php echo $podeAbrir ? ' historico-card-clicavel' : ''; ?>">
+                    <div class="historico-card historico-card-clicavel">
 
                         <?php if (!empty($item['imagem'])): ?>
                             <img src="/<?php echo htmlspecialchars($item['imagem']); ?>" alt="<?php echo htmlspecialchars($item['carro']); ?>" class="historico-img">
@@ -106,21 +101,19 @@ $historico = lerHistorico($arquivoHistorico);
                                 <?php echo htmlspecialchars($item['origem']); ?> → <?php echo htmlspecialchars($item['destino']); ?>
                             </span>
                             <span class="historico-detalhe">
-                                <?php echo $item['distancia_km']; ?> km · <?php echo htmlspecialchars($item['data_hora']); ?>
+                                <?php echo $item['distancia_km']; ?> km · <?php echo date('d/m/Y H:i', strtotime($item['data_hora'])); ?>
                             </span>
                         </div>
 
                         <div class="historico-acoes">
-                            <?php if ($podeAbrir): ?>
-                                <!-- Form escondido: o clique na div inteira do card dispara este submit (ver tema.js/script no final da página) -->
-                                <form method="post" action="Resultado.php" class="historico-abrir-form">
-                                    <input type="hidden" name="carro_id" value="<?php echo htmlspecialchars($item['carro_id']); ?>">
-                                    <input type="hidden" name="origem" value="<?php echo htmlspecialchars($item['origem']); ?>">
-                                    <input type="hidden" name="destino" value="<?php echo htmlspecialchars($item['destino']); ?>">
-                                    <input type="hidden" name="percentual_saida" value="<?php echo htmlspecialchars($item['percentual_saida']); ?>">
-                                    <input type="hidden" name="percentual_chegada" value="<?php echo htmlspecialchars($item['percentual_chegada']); ?>">
-                                </form>
-                            <?php endif; ?>
+                            <!-- Form escondido: o clique na div inteira do card dispara este submit -->
+                            <form method="post" action="Resultado.php" class="historico-abrir-form">
+                                <input type="hidden" name="carro_id" value="<?php echo htmlspecialchars($item['carro_id']); ?>">
+                                <input type="hidden" name="origem" value="<?php echo htmlspecialchars($item['origem']); ?>">
+                                <input type="hidden" name="destino" value="<?php echo htmlspecialchars($item['destino']); ?>">
+                                <input type="hidden" name="percentual_saida" value="<?php echo htmlspecialchars($item['percentual_saida']); ?>">
+                                <input type="hidden" name="percentual_chegada" value="<?php echo htmlspecialchars($item['percentual_chegada']); ?>">
+                            </form>
 
                             <form method="post" action="historico.php" class="historico-excluir-form" onclick="event.stopPropagation();">
                                 <input type="hidden" name="excluir_id" value="<?php echo htmlspecialchars($item['id']); ?>">
@@ -145,8 +138,6 @@ $historico = lerHistorico($arquivoHistorico);
     <script src="/js/tema.js"></script>
 
     <script>
-        // Clicar em qualquer lugar do card (exceto no botão de excluir, que já
-        // tem event.stopPropagation() no próprio form) abre o resultado de novo.
         document.querySelectorAll('.historico-card-clicavel').forEach(function (card) {
             card.addEventListener('click', function () {
                 const form = card.querySelector('.historico-abrir-form');
