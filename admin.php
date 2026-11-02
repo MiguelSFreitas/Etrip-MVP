@@ -262,7 +262,7 @@ $modoTeste = modoTesteAtivo();
     </main>
 
     <footer class="rodape">
-        <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-footer">
+        <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-footer"> &copy;
     </footer>
 
     <script src="/js/tema.js"></script>

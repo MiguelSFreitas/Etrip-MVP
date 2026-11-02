@@ -186,7 +186,7 @@ require_once __DIR__ . '/backend/data/CidadeModel.php';  // gera $cidades
     </main>
 
     <footer class="rodape">
-        <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-footer">
+        <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-footer"> &copy;
     </footer>
 
     <!-- Dados completos dos carros, gerados pelo PHP, pro selects.js filtrar
