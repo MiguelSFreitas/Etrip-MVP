@@ -571,6 +571,16 @@ button:disabled::after {
     box-shadow: var(--sombra);
 }
 
+.historico-card-clicavel {
+    cursor: pointer;
+    transition: transform .2s var(--curva), box-shadow .2s;
+}
+
+.historico-card-clicavel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 44px -18px rgba(8, 31, 74, .55);
+}
+
 .historico-img {
     flex: none;
     width: 72px;
@@ -617,40 +627,35 @@ button:disabled::after {
     gap: 8px;
 }
 
-.historico-excluir-form,
-.historico-abrir-form {
+.historico-excluir-form {
     flex: none;
 }
 
-.botao-excluir,
-.botao-abrir {
+/* O form de abrir fica tecnicamente visível (não é display:none) porque
+   senão alguns navegadores recusam enviar o submit, mas ele não ocupa
+   espaço nenhum no layout — quem abre o resultado é o clique na div
+   .historico-card-clicavel inteira, não esse form em si. */
+.historico-abrir-form {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.botao-excluir {
     width: 42px;
     height: 42px;
     border-radius: 50%;
     font-size: 18px;
     display: grid;
     place-items: center;
-    transition: background-color .25s, transform .25s var(--curva);
-}
-
-.botao-excluir {
     background: #ffebee;
     color: var(--erro);
+    transition: background-color .25s, transform .25s var(--curva);
 }
 
 .botao-excluir:hover {
     background: var(--erro);
-    color: var(--branco);
-    transform: scale(1.08);
-}
-
-.botao-abrir {
-    background: var(--gelo);
-    color: var(--azul-escuro);
-}
-
-.botao-abrir:hover {
-    background: var(--azul);
     color: var(--branco);
     transform: scale(1.08);
 }
@@ -757,7 +762,6 @@ button:disabled::after {
         scroll-behavior: auto !important;
     }
 }
-
 /* ===== LOGIN / CADASTRO ===== */
 /* Cole este bloco no final do style.css já existente */
 
@@ -809,4 +813,44 @@ form input[type="password"]:focus {
 :root[data-theme="dark"] form input[type="password"] {
     background-color: #0f1d33;
     color: #eef3fb;
+}
+
+/* ===== PAINEL ADMIN ===== */
+
+.tabela-admin {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.tabela-admin th {
+    text-align: left;
+    padding: 10px 12px;
+    color: var(--azul-escuro);
+    font-weight: 700;
+    border-bottom: 2px solid var(--gelo);
+    white-space: nowrap;
+}
+
+.tabela-admin td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--gelo);
+    white-space: nowrap;
+}
+
+.tabela-admin tr:hover td {
+    background: var(--ceu);
+}
+
+:root[data-theme="dark"] .tabela-admin th {
+    color: #9fc6ff;
+    border-bottom-color: #22314d;
+}
+
+:root[data-theme="dark"] .tabela-admin td {
+    border-bottom-color: #22314d;
+}
+
+:root[data-theme="dark"] .tabela-admin tr:hover td {
+    background: #11203a;
 }

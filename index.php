@@ -10,7 +10,7 @@
  *   nada separado — o dado já vem pronto do PHP).
  */
 require_once __DIR__ . '/auth.php';
-exigirLogin(); // sem conta, não entra — redireciona pro login.php
+exigirLogin(); 
 
 require_once __DIR__ . '/backend/data/CarroModel.php';   // gera $carros, listarMarcas(), listarModelosPorMarca()
 require_once __DIR__ . '/backend/data/CidadeModel.php';  // gera $cidades
@@ -42,6 +42,9 @@ require_once __DIR__ . '/backend/data/CidadeModel.php';  // gera $cidades
             <li><a href="index.php" class="ativo">Início</a></li>
             <li><a href="#viagem">Calcular viagem</a></li>
             <li><a href="historico.php">Histórico</a></li>
+            <?php if (souAdmin()): ?>
+                <li><a href="admin.php">Admin</a></li>
+            <?php endif; ?>
         </ul>
         <div class="usuario-info">
             <span>Olá, <?php echo htmlspecialchars(nomeUsuarioLogado()); ?></span>

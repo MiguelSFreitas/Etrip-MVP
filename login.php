@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $pdo = conectarBanco();
-        $stmt = $pdo->prepare('SELECT id, nome, senha_hash FROM usuarios WHERE email = ?');
+        $stmt = $pdo->prepare('SELECT id, nome, senha_hash, is_admin FROM usuarios WHERE email = ?');
         $stmt->execute([$email]);
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
+        $_SESSION['is_admin'] = (bool) $usuario['is_admin'];
 
         header('Location: index.php');
         exit;

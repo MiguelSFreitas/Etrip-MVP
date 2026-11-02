@@ -21,6 +21,7 @@ require_once __DIR__ . '/backend/data/CarroModel.php';   // $carros, buscarCarro
 require_once __DIR__ . '/backend/data/CidadeModel.php';  // $cidades, $distancias, buscarDistancia()
 require_once __DIR__ . '/backend/data/PostoModel.php';   // $postos, buscarPostosPorCidade()
 require_once __DIR__ . '/backend/data/Query.php';      // conectarBanco()
+require_once __DIR__ . '/backend/data/ConfigModel.php';  // modoTesteAtivo()
 
 
 // ------------------------------------------------------------
@@ -284,6 +285,11 @@ try {
         }
     }
 
+    // No modo teste (ligado pelo admin), simulações não são salvas de
+    // verdade — serve pra testar o sistema sem poluir o histórico real.
+    $modoTeste = modoTesteAtivo();
+
+    if (!$modoTeste) {
     salvarHistorico([
         'carro' => $carro['marca'] . ' ' . $carro['modelo'] . ' ' . $carro['versao'],
         'imagem' => $carro['caminho_imagem'] ?? '',
@@ -298,6 +304,7 @@ try {
         'percentual_saida' => $percentualSaida,
         'percentual_chegada' => $percentualChegadaDesejado,
     ]);
+    }
 
 } catch (Exception $e) {
     $erro = $e->getMessage();
@@ -328,6 +335,9 @@ try {
             <li><a href="index.php">Início</a></li>
             <li><a href="index.php#viagem">Nova simulação</a></li>
             <li><a href="historico.php">Histórico</a></li>
+            <?php if (souAdmin()): ?>
+                <li><a href="admin.php">Admin</a></li>
+            <?php endif; ?>
         </ul>
         <div class="usuario-info">
             <span>Olá, <?php echo htmlspecialchars(nomeUsuarioLogado()); ?></span>
@@ -337,6 +347,12 @@ try {
     </nav>
 
     <main class="camadas" style="margin-top: 110px;">
+
+        <?php if (!empty($modoTeste)): ?>
+            <p class="aviso" style="background:#fff8e1; color:#8a6d00; text-align:center;">
+                🧪 Modo teste ativo — esta simulação não foi salva no histórico.
+            </p>
+        <?php endif; ?>
 
         <?php if ($erro): ?>
 
