@@ -88,33 +88,35 @@ UPDATE usuarios SET is_admin = 1 WHERE email = 'seuemail@exemplo.com';
 ---
 
 ## Estrutura de arquivos
+
+```
 etrip/
 │
-├── index.php Tela principal — formulário (exige login)
-├── Resultado.php Cálculo + HTML do resultado
-├── historico.php Histórico de simulações (exige login)
-├── admin.php Painel de administração (exige admin)
-├── login.php Login
-├── cadastro.php Criar conta
-├── logout.php Encerrar sessão
-├── auth.php Funções de sessão/autenticação
-├── 404.php Página de erro personalizada
-├── router.php Necessário pro php -S mostrar o 404 e proteger a raiz
+├── index.php              Tela principal — formulário (exige login)
+├── Resultado.php           Cálculo + HTML do resultado
+├── historico.php           Histórico de simulações (exige login)
+├── admin.php               Painel de administração (exige admin)
+├── login.php               Login
+├── cadastro.php             Criar conta
+├── logout.php               Encerrar sessão
+├── auth.php                 Funções de sessão/autenticação
+├── 404.php                  Página de erro personalizada
+├── router.php                Necessário pro php -S mostrar o 404 e proteger a raiz
 │
 ├── css/style.css
 ├── js/ (selects.js, sliders.js, tema.js)
-├── carrosimg/ Fotos dos carros
-├── img/ Logo
+├── carrosimg/                Fotos dos carros
+├── img/                      Logo
 │
 └── backend/
-├── classes/ (Carro.php, PostoRecarga.php — opcionais, não usadas ainda)
-└── data/
-├── conexao.php Conexão PDO com o MySQL
-├── CarroModel.php Busca carros no banco
-├── PostoModel.php Busca postos no banco
-├── CidadeModel.php Cidades + distâncias (continua em array)
-└── ConfigModel.php Modo teste e outras configurações
-
+    ├── classes/ (Carro.php, PostoRecarga.php — opcionais, não usadas ainda)
+    └── data/
+        ├── conexao.php        Conexão PDO com o MySQL
+        ├── CarroModel.php      Busca carros no banco
+        ├── PostoModel.php      Busca postos no banco
+        ├── CidadeModel.php     Cidades + distâncias (continua em array)
+        └── ConfigModel.php     Modo teste e outras configurações
+```
 
 ---
 
