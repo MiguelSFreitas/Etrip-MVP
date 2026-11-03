@@ -134,7 +134,7 @@ etrip/
 
 ## Dados cadastrados
 
-**9+ versões de carro** (dados verificados em fichas técnicas e Inmetro): BYD Dolphin Mini (GL/GS), BYD Dolphin (GS), BYD Yuan Pro, Geely EX2 (Pro/Max), Chevrolet Spark EUV, GAC Aion UT (Premium/Elite) — mais os que forem adicionados pelo painel admin.
+**9+ versões de carro** (dados verificados em fichas técnicas e Inmetro) — mais os que forem adicionados pelo painel admin.
 
 **7 cidades do ES**, seguindo a rota real da BR-101: Pinheiros → São Mateus → Linhares → Ibiraçu → Serra → Vitória → Vila Velha, com as 21 combinações de rota cadastradas.
 
@@ -160,14 +160,6 @@ etrip/
 **Incluído:** tudo listado acima.
 
 **Fora do escopo (versões futuras):** múltiplas paradas otimizadas numa mesma simulação, comparação entre carros na mesma tela, mapa visual interativo, ajuste do cálculo por elevação do terreno, integração com APIs externas em tempo real, recuperação de senha, confirmação de e-mail.
-
----
-
-## Pendências conhecidas
-
-- Preencher `caminho_imagem` dos carros que ainda não têm foto cadastrada
-- Confirmar 3 valores de distância com empate técnico no banco (Linhares↔Serra, Linhares↔Vila Velha, Ibiraçu↔Vila Velha)
-- Confirmar o valor exato da tarifa de energia da EDP ES (hoje uma estimativa)
 
 ---
 
