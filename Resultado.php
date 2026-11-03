@@ -1,17 +1,6 @@
 <?php
 /**
  * Resultado.php
- *
- * Recebe o formulário do index.php via POST, calcula se a bateria
- * aguenta a viagem e sugere onde recarregar. Já devolve o HTML da
- * página de resultado — sem fetch/JSON.
- *
- * IMPORTANTE: o cálculo nunca assume que o carro pode chegar ao
- * destino "descarregado". Se a viagem gasta mais energia do que a
- * bateria TEM (mesmo sem reserva nenhuma), o sistema procura uma
- * parada numa cidade intermediária, dentro do alcance real do carro
- * — nunca sugere recarregar só depois de já ter chegado ao destino
- * se o carro não teria energia pra chegar lá.
  */
 
 require_once __DIR__ . '/auth.php';

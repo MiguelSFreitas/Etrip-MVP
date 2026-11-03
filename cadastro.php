@@ -1,3 +1,4 @@
+//cadastro.php
 <?php
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/backend/data/Query.php';

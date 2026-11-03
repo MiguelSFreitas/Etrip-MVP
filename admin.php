@@ -1,12 +1,6 @@
 <?php
 /**
  * admin.php
- *
- * Painel de administração do ETRIP. Só acessível por contas com
- * is_admin = 1 na tabela usuarios (exigirAdmin() garante isso).
- *
- * Hoje tem: lista de usuários cadastrados, formulário pra adicionar
- * carro, e o botão de ligar/desligar o modo teste.
  */
 
 require_once __DIR__ . '/auth.php';

@@ -1,13 +1,6 @@
 <?php
 /**
- * index.php (fica em public/)
- *
- * O PHP gera:
- * - as opções de MARCA (via listarMarcas)
- * - as opções de ORIGEM/DESTINO (via $cidades)
- * - os dados completos dos carros em JSON, pro JS usar na cascata
- *   marca -> modelo -> versao (selects.js lê esse JSON, nunca busca
- *   nada separado — o dado já vem pronto do PHP).
+ * index.php 
  */
 require_once __DIR__ . '/auth.php';
 exigirLogin(); 

@@ -1,10 +1,6 @@
 <?php
 /**
  * auth.php
- *
- * Funções de autenticação/sessão do ETRIP. Incluir esse arquivo no
- * topo de qualquer página que precise saber quem está logado ou que
- * precise EXIGIR login (chamando exigirLogin()).
  */
 
 function iniciarSessao() {

@@ -1,23 +1,6 @@
 <?php
 /**
  * router.php
- *
- * Só é necessário quando o projeto roda no servidor embutido do PHP
- * (php -S), como o usado pela extensão PHP Server do VS Code.
- * Esse tipo de servidor não lê .htaccess, então sem esse roteador
- * uma URL inexistente mostra o erro feio padrão do navegador em vez
- * do 404.php personalizado.
- *
- * Também é aqui que a raiz do site ("/") decide pra onde ir: se
- * ninguém estiver logado, abre login.php; se já tiver sessão, abre
- * index.php normalmente.
- *
- * Como usar:
- *   php -S localhost:8000 router.php
- *
- * Se estiverem usando a extensão PHP Server do VS Code, procure nas
- * configurações da extensão um campo tipo "Router" ou "Entry Point"
- * e aponte pra este arquivo.
  */
 
 require_once __DIR__ . '/auth.php';

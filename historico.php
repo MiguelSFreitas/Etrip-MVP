@@ -1,10 +1,6 @@
 <?php
 /**
  * historico.php
- *
- * Mostra as simulações salvas na tabela historico_simulacoes como
- * cards — só as do usuário que está logado (cada conta só vê e
- * mexe no próprio histórico).
  */
 
 require_once __DIR__ . '/auth.php';
