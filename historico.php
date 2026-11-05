@@ -6,7 +6,7 @@
 require_once __DIR__ . '/auth.php';
 exigirLogin();
 
-require_once __DIR__ . '/backend/data/Query.php';      // conectarBanco()
+require_once __DIR__ . '/App/data/Query.php';      // conectarBanco()
 
 $pdo = conectarBanco();
 $usuarioId = idUsuarioLogado();

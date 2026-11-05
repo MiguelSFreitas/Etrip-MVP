@@ -6,11 +6,11 @@
 require_once __DIR__ . '/auth.php';
 exigirLogin(); // sem conta, não calcula — redireciona pro login.php
 
-require_once __DIR__ . '/backend/data/CarroModel.php';   // $carros, buscarCarroPorId()
-require_once __DIR__ . '/backend/data/CidadeModel.php';  // $cidades, $distancias, buscarDistancia()
-require_once __DIR__ . '/backend/data/PostoModel.php';   // $postos, buscarPostosPorCidade()
-require_once __DIR__ . '/backend/data/Query.php';      // conectarBanco()
-require_once __DIR__ . '/backend/data/ConfigModel.php';  // modoTesteAtivo()
+require_once __DIR__ . '/App/data/CarroModel.php';   // $carros, buscarCarroPorId()
+require_once __DIR__ . '/App/data/CidadeModel.php';  // $cidades, $distancias, buscarDistancia()
+require_once __DIR__ . '/App/data/PostoModel.php';   // $postos, buscarPostosPorCidade()
+require_once __DIR__ . '/App/data/Query.php';      // conectarBanco()
+require_once __DIR__ . '/App/data/ConfigModel.php';  // modoTesteAtivo()
 
 
 // ------------------------------------------------------------

@@ -1,13 +1,5 @@
 /**
  * selects.js
- *
- * Faz a cascata marca -> modelo -> versao usando os dados que o PHP
- * já exportou em "carrosDisponiveis" (declarado no index.php, antes
- * deste script ser carregado). Não busca nada separado — só filtra
- * o array que já está na página.
- *
- * Ao final, preenche o campo oculto #carro_id com o id do carro
- * escolhido, que é o único dado que o CalculoEnergia.php usa.
  */
 
 document.addEventListener('DOMContentLoaded', function () {

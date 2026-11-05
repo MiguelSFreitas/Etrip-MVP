@@ -1,10 +1,5 @@
 /**
  * tema.js
- *
- * Alterna entre modo claro e escuro, salvando a escolha no localStorage
- * pra lembrar na próxima visita. O index.php já aplica o tema salvo
- * antes de desenhar a página (ver script inline no <head>), então aqui
- * só cuidamos do clique no botão.
  */
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -108,7 +108,7 @@ etrip/
 ├── carrosimg/                Fotos dos carros
 ├── img/                      Logo
 │
-└── backend/
+└── App/
     ├── classes/ (Carro.php, PostoRecarga.php — opcionais, não usadas ainda)
     └── data/
         ├── conexao.php        Conexão PDO com o MySQL

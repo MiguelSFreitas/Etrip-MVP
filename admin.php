@@ -6,8 +6,8 @@
 require_once __DIR__ . '/auth.php';
 exigirAdmin();
 
-require_once __DIR__ . '/backend/data/Query.php';
-require_once __DIR__ . '/backend/data/ConfigModel.php';
+require_once __DIR__ . '/App/data/Query.php';
+require_once __DIR__ . '/App/data/ConfigModel.php';
 
 $pdo = conectarBanco();
 $mensagem = null;

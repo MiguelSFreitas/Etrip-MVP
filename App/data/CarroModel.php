@@ -1,23 +1,10 @@
 <?php
 /**
  * CarroModel.php
- *
- * Model: busca os dados dos carros no banco MySQL.
- * As funções têm o MESMO nome e MESMA assinatura de antes (quando os
- * dados vinham de array) — por isso nenhum outro arquivo do projeto
- * (Resultado.php, index.php) precisa mudar, só este aqui.
  */
 
 require_once __DIR__ . '/Query.php';
 
-/**
- * Busca um carro pelo ID.
- * Retorna null se o carro não existir.
- *
- * O segundo parâmetro ($carros) não é mais usado — existe só pra
- * manter a mesma assinatura da versão antiga (array), então quem
- * chama essa função não precisa mudar nada.
- */
 function buscarCarroPorId($carroId, $carros = null) {
     $pdo = conectarBanco();
     $stmt = $pdo->prepare('SELECT * FROM carros WHERE id = ?');

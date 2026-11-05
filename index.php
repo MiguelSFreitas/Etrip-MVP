@@ -5,8 +5,8 @@
 require_once __DIR__ . '/auth.php';
 exigirLogin(); 
 
-require_once __DIR__ . '/backend/data/CarroModel.php';   // gera $carros, listarMarcas(), listarModelosPorMarca()
-require_once __DIR__ . '/backend/data/CidadeModel.php';  // gera $cidades
+require_once __DIR__ . '/App/data/CarroModel.php';   // gera $carros, listarMarcas(), listarModelosPorMarca()
+require_once __DIR__ . '/App/data/CidadeModel.php';  // gera $cidades
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
