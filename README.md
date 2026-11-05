@@ -111,7 +111,7 @@ etrip/
 └── App/
     ├── classes/ (Carro.php, PostoRecarga.php — opcionais, não usadas ainda)
     └── data/
-        ├── conexao.php        Conexão PDO com o MySQL
+        ├── Query.php        Conexão PDO com o MySQL
         ├── CarroModel.php      Busca carros no banco
         ├── PostoModel.php      Busca postos no banco
         ├── CidadeModel.php     Cidades + distâncias (continua em array)
