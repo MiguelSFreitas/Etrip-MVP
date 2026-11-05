@@ -105,8 +105,8 @@ etrip/
 │
 ├── css/style.css
 ├── js/ (selects.js, sliders.js, tema.js)
-├── carrosimg/                Fotos dos carros
-├── img/                      Logo
+|             
+├── img/carrosimg/                Fotos dos carros e Logos
 │
 └── App/
     ├── classes/ (Carro.php, PostoRecarga.php — opcionais, não usadas ainda)
