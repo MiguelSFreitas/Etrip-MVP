@@ -2,7 +2,7 @@
 
 Sistema de planejamento de viagem para carros elétricos no Espírito Santo.
 
-Projeto desenvolvido para a feira de tecnologia da escola — Ensino Médio Técnico em Informática para Internet (1º ano). Marca/assinatura do grupo: **SGX**.
+Projeto desenvolvido para a feira de tecnologia da escola — Ensino Médio Técnico em Informática para Internet (1º IM01-EMI-IPI). Marca/assinatura do grupo: **SGX**.
 
 **Prazo de entrega:** 13/11
 
