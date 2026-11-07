@@ -854,3 +854,54 @@ form input[type="password"]:focus {
 :root[data-theme="dark"] .tabela-admin tr:hover td {
     background: #11203a;
 }
+
+/* ===== LINK EDITAR (tabela admin) ===== */
+
+.link-editar {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azul);
+    background: var(--gelo);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background-color .2s, color .2s;
+}
+
+.link-editar:hover {
+    background: var(--azul);
+    color: var(--branco);
+}
+
+:root[data-theme="dark"] .link-editar {
+    background: #11203a;
+    color: #9fc6ff;
+}
+
+/* ===== LINK EXCLUIR (tabela admin) ===== */
+
+.form-excluir-carro {
+    display: inline-block;
+}
+
+.link-excluir {
+    width: auto;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--erro);
+    background: #ffebee;
+    border-radius: 999px;
+    box-shadow: none;
+}
+
+.link-excluir::after {
+    display: none;
+}
+
+.link-excluir:hover {
+    background: var(--erro);
+    color: var(--branco);
+    transform: none;
+}

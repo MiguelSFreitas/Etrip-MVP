@@ -49,6 +49,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare('UPDATE usuarios SET is_admin = NOT is_admin WHERE id = ?');
         $stmt->execute([$_POST['usuario_id']]);
     }
+
+    // ---- Excluir carro ----
+    if (isset($_POST['acao']) && $_POST['acao'] === 'excluir_carro' && isset($_POST['carro_id'])) {
+        try {
+            $stmt = $pdo->prepare('DELETE FROM carros WHERE id = ?');
+            $stmt->execute([$_POST['carro_id']]);
+            $mensagem = 'Carro excluído com sucesso.';
+        } catch (Exception $e) {
+            // Se o carro já tiver sido usado em alguma simulação salva no
+            // histórico, o banco pode recusar o DELETE (dependendo de como
+            // a tabela historico_simulacoes estiver relacionada). Nesse
+            // caso, avisa em vez de deixar dar erro feio.
+            $erro = 'Não foi possível excluir esse carro — é possível que ele já tenha sido usado em alguma simulação salva.';
+        }
+    }
 }
 
 $usuarios = $pdo->query('SELECT id, nome, email, is_admin, criado_em FROM usuarios ORDER BY criado_em DESC')->fetchAll(PDO::FETCH_ASSOC);
@@ -193,6 +208,7 @@ $modoTeste = modoTesteAtivo();
                             <th>Versão</th>
                             <th>Bateria</th>
                             <th>Autonomia</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -203,6 +219,14 @@ $modoTeste = modoTesteAtivo();
                                 <td><?php echo htmlspecialchars($c['versao']); ?></td>
                                 <td><?php echo $c['bateria_kwh']; ?> kWh</td>
                                 <td><?php echo $c['autonomia_km']; ?> km</td>
+                                <td style="display:flex; gap:6px;">
+                                    <a href="admin_editar_carro.php?id=<?php echo $c['id']; ?>" class="link-editar">Editar</a>
+                                    <form method="post" action="admin.php" class="form-excluir-carro">
+                                        <input type="hidden" name="acao" value="excluir_carro">
+                                        <input type="hidden" name="carro_id" value="<?php echo $c['id']; ?>">
+                                        <button type="submit" class="link-excluir">Excluir</button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -256,10 +280,21 @@ $modoTeste = modoTesteAtivo();
     </main>
 
     <footer class="rodape">
-        <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-footer"> &copy;
+        <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-footer">
     </footer>
 
     <script src="/js/tema.js"></script>
+
+    <script>
+        document.querySelectorAll('.form-excluir-carro').forEach(function (form) {
+            form.addEventListener('submit', function (evento) {
+                const confirmou = confirm('Tem certeza que quer excluir esse carro? Essa ação não pode ser desfeita.');
+                if (!confirmou) {
+                    evento.preventDefault();
+                }
+            });
+        });
+    </script>
 
 </body>
 
