@@ -11,8 +11,7 @@ require_once __DIR__ . '/App/data/Query.php';      // conectarBanco()
 $pdo = conectarBanco();
 $usuarioId = idUsuarioLogado();
 
-// Processa exclusão, se o botão de lixeira de algum item foi clicado.
-// O "AND usuario_id = ?" garante que ninguém apaga histórico de outra conta.
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir_id'])) {
     $stmt = $pdo->prepare('DELETE FROM historico_simulacoes WHERE id = ? AND usuario_id = ?');
     $stmt->execute([$_POST['excluir_id'], $usuarioId]);

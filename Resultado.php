@@ -256,8 +256,7 @@ try {
             );
         }
     } elseif ($resultado['situacao'] === 'precisa_parar') {
-        // O carro NÃO teria energia pra chegar ao destino.
-        // Precisa de parada antes, dentro do alcance real dele.
+       
         $paradaIntermediaria = encontrarParadaViavel(
             $cidadeOrigem,
             $cidadeDestino,
