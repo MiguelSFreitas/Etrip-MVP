@@ -17,8 +17,7 @@ require_once __DIR__ . '/App/data/CidadeModel.php';  // gera $cidades
     <title>ETRIP</title>
     <link rel="stylesheet" href="/css/style.css">
     <script>
-        // Aplica o tema salvo ANTES da página desenhar, pra evitar o "flash"
-        // de tela clara aparecendo por um instante antes do escuro carregar.
+       
         if (localStorage.getItem('etrip-tema') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
         }
