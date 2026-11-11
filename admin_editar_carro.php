@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Busca os dados atuais do carro (já atualizados, se acabou de salvar)
+// Busca os dados atuais do carro 
 $stmt = $pdo->prepare('SELECT * FROM carros WHERE id = ?');
 $stmt->execute([$id]);
 $carro = $stmt->fetch(PDO::FETCH_ASSOC);

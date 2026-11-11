@@ -1,6 +1,6 @@
 <?php
 /**
- * admin.php
+ * admin.php.
  */
 
 require_once __DIR__ . '/auth.php';

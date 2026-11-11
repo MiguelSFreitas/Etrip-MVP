@@ -182,7 +182,7 @@ require_once __DIR__ . '/App/data/CidadeModel.php';  // gera $cidades
     </footer>
 
     <!-- Dados completos dos carros, gerados pelo PHP, pro selects.js filtrar
-         modelo/versão sem precisar buscar nada separado. -->
+         modelo/versão -->
     <script>
         const carrosDisponiveis = <?php echo json_encode($carros, JSON_UNESCAPED_UNICODE); ?>;
     </script>
