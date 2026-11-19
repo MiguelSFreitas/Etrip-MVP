@@ -64,7 +64,7 @@ if (!$carro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Editar carro — ETRIP</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <script>
         if (localStorage.getItem('etrip-tema') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
@@ -76,7 +76,7 @@ if (!$carro) {
 
     <nav class="menu">
         <a href="index.php" class="marca">
-            <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-nav">
+            <img src="/assets/img/etrip-logo-completa.png" alt="ETRIP" class="logo-nav">
         </a>
         <ul>
             <li><a href="index.php">Início</a></li>
@@ -151,10 +151,10 @@ if (!$carro) {
     </main>
 
     <footer class="rodape">
-        <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-footer">
+        <img src="/assets/img/SGX-logotransparente.png" alt="ETRIP" class="logo-footer">
     </footer>
 
-    <script src="/js/tema.js"></script>
+    <script src="/assets/js/tema.js"></script>
 
 </body>
 

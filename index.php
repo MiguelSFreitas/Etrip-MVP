@@ -15,7 +15,7 @@ require_once __DIR__ . '/App/data/CidadeModel.php';  // gera $cidades
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ETRIP</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <script>
        
         if (localStorage.getItem('etrip-tema') === 'dark') {
@@ -28,7 +28,7 @@ require_once __DIR__ . '/App/data/CidadeModel.php';  // gera $cidades
 
     <nav class="menu">
         <a href="index.php" class="marca">
-            <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-nav">
+            <img src="/assets/img/etrip-logo-completa.png" alt="ETRIP" class="logo-nav">
         </a>
         <ul>
             <li><a href="index.php" class="ativo">Início</a></li>
@@ -47,7 +47,7 @@ require_once __DIR__ . '/App/data/CidadeModel.php';  // gera $cidades
 
     <header class="hero">
         <div class="hero-texto">
-            <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-hero">
+            <img src="/assets/img/etrip-logo-completa.png" alt="ETRIP" class="logo-hero">
             <p>Escolha seu carro elétrico, a rota e a bateria que você tem.
                 A gente calcula se você chega ou se precisa parar para carregar.</p>
             <a href="#viagem" class="hero-botao">Planejar viagem</a>
@@ -178,7 +178,7 @@ require_once __DIR__ . '/App/data/CidadeModel.php';  // gera $cidades
     </main>
 
     <footer class="rodape">
-        <img src="/img/etrip-logo-completa.png" alt="ETRIP" class="logo-footer"> &copy;
+        <img src="/assets/img/SGX-logotransparente.png" alt="ETRIP" class="logo-footer"> &copy;
     </footer>
 
     <!-- Dados completos dos carros, gerados pelo PHP, pro selects.js filtrar
@@ -187,9 +187,9 @@ require_once __DIR__ . '/App/data/CidadeModel.php';  // gera $cidades
         const carrosDisponiveis = <?php echo json_encode($carros, JSON_UNESCAPED_UNICODE); ?>;
     </script>
 
-    <script src="/js/selects.js"></script>
-    <script src="/js/sliders.js"></script>
-    <script src="/js/tema.js"></script>
+    <script src="/assets/js/selects.js"></script>
+    <script src="/assets/js/sliders.js"></script>
+    <script src="/assets/js/tema.js"></script>
     <script>
         document.querySelectorAll('input[type="range"]').forEach(function(r) {
             var pintar = function() {
@@ -201,9 +201,7 @@ require_once __DIR__ . '/App/data/CidadeModel.php';  // gera $cidades
     </script>
 
     <script>
-        // Mostra "Calculando..." no botão assim que o formulário é enviado.
-        // Como o PHP recarrega a página pra mostrar o resultado, isso evita
-        // a sensação de que o site travou durante o pequeno delay.
+       
         document.getElementById('formulario').addEventListener('submit', function () {
             const botao = document.getElementById('btn-calcular');
             botao.disabled = true;
